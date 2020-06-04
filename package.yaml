@@ -1,0 +1,22 @@
+name: wps-serve
+version: 0.1.0.0
+
+default-extensions:
+- NoImplicitPrelude
+- OverloadedStrings
+- RecordWildCards
+- ViewPatterns
+- DeriveGeneric
+
+executables:
+  wps-serve:
+    main: app/Main.hs
+
+    dependencies:
+    - base
+    - rio
+    - wai
+    - warp
+    - http-types
+    - yaml
+    - mime-types
