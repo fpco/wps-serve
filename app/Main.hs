@@ -29,9 +29,6 @@ main = do
         | any (\x -> x == "." || x == "..") p -> send $ responseBuilder status400 [] "Nice try"
         | ("index.html":rest) <- reverse p ->
             send $ responseBuilder status302 [("Location", encodeUtf8 $ "/" <> T.intercalate "/" (reverse rest))] "Redirecting"
-      "blog":rest -> do
-        let dest = "https://tech.fpcomplete.com/blog/" <> T.intercalate "/" rest
-        send $ responseBuilder status302 [("Location", encodeUtf8 dest)] "Redirecting"
       p
         | Just dest <- Map.lookup (T.intercalate "/" (filter (not . T.null) p)) redirects ->
             send $ responseBuilder status302 [("Location", encodeUtf8 dest)] "Redirecting"
